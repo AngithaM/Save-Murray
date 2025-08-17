@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Build Homes, Dont Demolish them — Petition</title>
+  <meta name="description" content="Sign to support the Murray family — Bohermeen stands together to save a family home from demolition." />
+  <style>
+    /* --- Theme --- */
+    :root{
+      --bg:#0b1220; --bg2:#0f172a; --card:#0f172a; --card2:#111827; --text:#e5e7eb; --muted:#a3acc2;
+      --accent:#22c55e; --accent-2:#16a34a; --ring:#34d399; --warning:#f59e0b; --outline:#1f2937;
+      --shadow: 0 20px 50px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);}
+
+    /* --- Layout --- */
+    .wrap{max-width:1200px;margin:0 auto;padding:20px;}
+    header{position:relative;border-radius:22px;overflow:hidden;margin:8px 0 22px;background:radial-gradient(1000px 400px at 10% -20%,#1a2440,transparent),radial-gradient(900px 400px at 110% -30%,#0b5e33,transparent),linear-gradient(180deg,#0e162b,#0e1426);border:1px solid var(--outline);box-shadow:var(--shadow)}
+    .hdr-inner{display:flex;gap:20px;align-items:center;justify-content:space-between;padding:18px 20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 180deg at 50% 50%, #22c55e, #1d4ed8, #22c55e);display:grid;place-items:center;box-shadow:0 8px 24px rgba(34,197,94,.35)}
+    .logo svg{width:22px;height:22px;fill:white;opacity:.95}
+    h1{margin:0;font-size:clamp(1.2rem,2.8vw,2rem);letter-spacing:.2px}
+
+    .hdr-cta{display:flex;gap:10px;align-items:center}
+    .pill{background:#0b5e33cc;border:1px solid #2c7a52;border-radius:999px;padding:8px 12px;font-weight:700}
+    .counter{display:flex;align-items:center;gap:8px;background:rgba(17,24,39,.65);border:1px solid var(--outline);border-radius:14px;padding:8px 12px}
+
+    .grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:22px}
+    @media (max-width: 980px){.grid{grid-template-columns:1fr}}
+
+    .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--outline);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+    .muted{color:var(--muted)}
+    .lead{font-size:1.08rem}
+    .mission{font-size:clamp(1.4rem,2.2vw,1.9rem);margin:6px 0 10px}
+
+    /* Hero poster frame */
+    .hero{margin:0 0 14px;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#0b1020,#0a0f1b);border:1px solid #22304a;position:relative}
+    .hero::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05), inset 0 -80px 120px rgba(0,0,0,.35);pointer-events:none}
+    .hero img{display:block;width:100%;height:auto;}
+
+    /* Progress bar */
+    .progress{margin:10px 0 16px}
+    .bar{height:12px;background:#0b1020;border:1px solid #22304a;border-radius:999px;overflow:hidden}
+    .bar > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--ring));transition:width .6s ease}
+    .bar-label{display:flex;justify-content:space-between;font-size:.9rem;margin-top:6px;color:var(--muted)}
+
+    /* Form */
+    form{display:grid;gap:12px;margin-top:6px}
+    label{display:block;font-weight:700;margin-bottom:6px}
+    input[type=text],input[type=email]{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #263244;background:#0b1020;color:var(--text);outline:2px solid transparent;outline-offset:2px}
+    input[type=text]:focus,input[type=email]:focus{outline-color:var(--ring)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:640px){.row{grid-template-columns:1fr}}
+    .actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    button{appearance:none;border:0;border-radius:12px;padding:13px 18px;font-weight:800;cursor:pointer;background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#062812;box-shadow:0 10px 30px rgba(34,197,94,.35)}
+    button:hover{transform:translateY(-1px)}
+    button:active{transform:translateY(0)}
+    button[disabled]{opacity:.65;cursor:not-allowed}
+    .status{min-height:20px}
+
+    /* Sidebar */
+    aside.card{position:sticky;top:16px;align-self:start}
+    .list{max-height:540px;overflow:auto;border-radius:14px;border:1px solid #22304a;background:#0b1020}
+    .item{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid #162036}
+    .item:last-child{border-bottom:0}
+    .name{font-weight:700}
+    .loc{color:var(--muted)}
+
+    /* Sections */
+    .section{margin:8px 0 18px}
+    .section h3{margin:0 0 6px;font-size:1.08rem}
+    .section p{margin:8px 0}
+    .callout{background:linear-gradient(180deg,#102338,#0f1a2d);border:1px solid #1e3352;border-radius:14px;padding:12px 14px;color:#c7d2fe}
+
+    /* Share row */
+    .share{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .share button,.share a{background:#0b1020;border:1px solid #22304a;color:var(--text);padding:10px 12px;border-radius:999px;text-decoration:none}
+
+    /* Motion respect */
+    @media (prefers-reduced-motion:reduce){button{transition:none} .bar>span{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="hdr-inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" aria-label="Home"><path d="M12 3l9 7-1.5 1.5L18 9.7V20a1 1 0 0 1-1 1h-4v-6H11v6H7a1 1 0 0 1-1-1V9.7L4.5 11.5 3 10l9-7z"/></svg>
+          </div>
+          <h1>Save the Murray Family Home</h1>
+        </div>
+        <div class="hdr-cta">
+          <div class="pill">Together for Bohermeen</div>
+          <div class="counter" aria-live="polite" aria-atomic="true" id="totalCounter"><strong>0</strong> signatures</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="petition-title">
+        <!-- POSTER: replace poster.png with your PNG filename -->
+        <div class="hero">
+          <img src="2.png" alt="Build Homes, Dont Demolish them — community poster. Replace with your PNG filename." loading="lazy" />
+        </div>
+
+        <!-- Goal / progress bar -->
+        <div class="progress" aria-live="polite">
+          <div class="bar" aria-hidden="true"><span id="progressFill" style="width:0%"></span></div>
+          <div class="bar-label"><div>Goal: <strong id="goalLabel">5,000</strong></div><div><strong id="progressPct">0%</strong></div></div>
+        </div>
+
+        <h2 id="petition-title" class="mission">Build Homes, Dont Demolish them</h2>
+        <p class="lead">Listen to the concerns of the Bohermeen Community; explore all options and come to a resolution to preserve a family home.</p>
+
+        <div class="callout" role="note">The People of Bohermeen stand together to save a family home from demolition. In our parish, we look out for one another — and today, we stand with this family.</div>
+
+        <div class="section">
+          <h3>Why is this important?</h3>
+          <p>To save a family home from demolition.</p>
+          <p>The People of Bohermeen stand against the demolition of this home.</p>
+          <p>In Bohermeen, we look out for one another. Our community has always stood strong — and today, we stand strong with this family.</p>
+          <p>The family have lived in Bohermeen for generations. They have raised their family here and been part of the heartbeat of our parish. Now they face the devastating prospect of seeing their family home demolished.</p>
+          <p>We know there are legal processes, history, and technical details. But for the people who live in Bohermeen, this is about something bigger — it’s about compassion, dignity and protecting our community.</p>
+          <p>A family home is more than walls and a roof. It is the centre of family life, a place of safety, and a part of the local story. Losing a home is not just a legal outcome — it’s a human tragedy.</p>
+        </div>
+
+        <div class="section">
+          <h3>Our Message as a Community</h3>
+          <p>We are deeply concerned and strongly opposed to the destruction of this home. We believe that every possible alternative should be explored before a family is forced from the place they have called home for decades.</p>
+        </div>
+
+        <div class="section">
+          <h3>How You Can Help</h3>
+          <p>Sign our petition to stand with the Murrays. Show that Bohermeen cares, that we value our neighbours, and that we will raise our voices to keep our community strong.</p>
+          <p>Your signature matters. Your voice can help save this home.</p>
+          <div class="share">
+            <button type="button" id="shareBtn">Share</button>
+            <button type="button" id="copyBtn">Copy link</button>
+            <a id="tweetBtn" target="_blank" rel="noopener">Tweet</a>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <form id="signForm" novalidate>
+          <div>
+            <label for="name">Full name <span class="muted">(required)</span></label>
+            <input id="name" name="name" type="text" required maxlength="80" autocomplete="name" />
+          </div>
+          <div>
+            <label for="email">Email <span class="muted">(optional)</span></label>
+            <input id="email" name="email" type="email" maxlength="120" autocomplete="email" />
+          </div>
+          <div class="row">
+            <div>
+              <label for="location">City / Country <span class="muted">(required)</span></label>
+              <input id="location" name="location" type="text" maxlength="80" autocomplete="address-level2" required />
+            </div>
+            <div style="display:none">
+              <!-- Honeypot for bots -->
+              <label for="website">Website</label>
+              <input id="website" name="honeypot" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+          </div>
+          <div>
+            <input id="consent" type="checkbox" required />
+            <label for="consent">I consent to my name being displayed publicly.</label>
+          </div>
+          <div class="actions">
+            <button id="submitBtn" type="submit">Sign Petition</button>
+            <div class="status" id="status" aria-live="polite"></div>
+          </div>
+          <p class="muted" style="margin:8px 0 0">By signing, you agree to the processing of your data for the purpose of this petition. <a href="#" class="muted">Privacy policy</a>.</p>
+        </form>
+      </section>
+
+      <aside class="card" aria-labelledby="signers-title">
+        <h2 id="signers-title" style="margin-top:0">Recent signers</h2>
+        <div class="list" id="signerList" role="log" aria-live="polite" aria-relevant="additions"></div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+  const API_BASE = 'https://script.google.com/macros/s/AKfycbw66keOIQsrQAB4uegShsdF5aMYoq0YIWCnd46X73R0oiZFHennCFEMxee7MGgB6EM/exec';
+  const LIST_LIMIT = 200; // how many to show in the sidebar
+  const GOAL = 5000;
+
+  const $ = (sel, el=document) => el.querySelector(sel);
+  const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+
+  const state = { count: 0, items: [] };
+
+  function fmtDate(iso) {
+    try { return new Date(iso).toLocaleString(); } catch { return iso; }
+  }
+
+  function updateProgress(){
+    const pct = Math.max(0, Math.min(100, Math.round((state.count/GOAL)*100)));
+    $('#progressFill').style.width = pct + '%';
+    $('#progressPct').textContent = pct + '%';
+    $('#goalLabel').textContent = GOAL.toLocaleString();
+  }
+
+  function render() {
+    $('#totalCounter strong').textContent = state.count.toLocaleString();
+    const list = $('#signerList');
+    list.innerHTML = '';
+    for (const it of state.items) {
+      const row = document.createElement('div');
+      row.className = 'item';
+      const left = document.createElement('div');
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = it.name; // textContent prevents XSS
+      const loc = document.createElement('div');
+      loc.className = 'loc';
+      loc.textContent = it.location ? it.location : '';
+      left.appendChild(name);
+      left.appendChild(loc);
+      const time = document.createElement('div');
+      time.className = 'loc';
+      time.textContent = fmtDate(it.timestamp);
+      row.appendChild(left);
+      row.appendChild(time);
+      list.appendChild(row);
+    }
+    updateProgress();
+  }
+
+  async function fetchSigners() {
+    try {
+      const res = await fetch(`${API_BASE}?limit=${encodeURIComponent(LIST_LIMIT)}`);
+      const data = await res.json();
+      state.count = Number(data.count) || 0;
+      state.items = Array.isArray(data.items) ? data.items : [];
+      render();
+    } catch (e) {
+      console.error(e);
+      $('#status').textContent = 'Could not load signatures. Please try again later.';
+    }
+  }
+
+  function getFingerprint() {
+    try { return `${Intl.DateTimeFormat().resolvedOptions().timeZone}|${navigator.language}`; } catch { return '' }
+  }
+
+  async function submitForm(ev) {
+    ev.preventDefault();
+    const name = $('#name').value.trim();
+    const email = $('#email').value.trim();
+    const location = $('#location').value.trim();
+    const honeypot = $('#website').value.trim();
+    const consent = $('#consent').checked;
+
+    const btn = $('#submitBtn');
+    btn.disabled = true; $('#status').textContent = 'Submitting…';
+
+    // Validation (minimal but meaningful)
+    if (!name) { $('#status').textContent = 'Please enter your name.'; btn.disabled = false; return; }
+    if (!/^[\p{L}\p{M}][\p{L}\p{M}\s.'-]{1,78}[\p{L}\p{M}]$/u.test(name)) {
+      $('#status').textContent = 'Please enter a valid full name.';
+      btn.disabled = false;
+      return;
+    }
+    if (!location) { $('#status').textContent = 'Please enter your city / country.'; btn.disabled = false; return; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      $('#status').textContent = 'Please enter a valid email (or leave it blank).';
+      btn.disabled = false;
+      return;
+    }
+    if (!consent) { $('#status').textContent = 'Please consent to display your name.'; btn.disabled = false; return; }
+
+    const last = Number(localStorage.getItem('lastSignatureTime') || 0);
+    const now = Date.now();
+    if (now - last < 2*60*1000) {
+      $('#status').textContent = 'Please wait a moment before signing again.'; btn.disabled = false; return;
+    }
+
+    try {
+      const body = new URLSearchParams({
+        name, location, honeypot,
+        ua: navigator.userAgent.slice(0, 120),
+        fp: getFingerprint()
+      });
+      if (email) body.append('email', email);
+
+      const res = await fetch(API_BASE, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body
+      });
+      const data = await res.json();
+      if (data && data.ok) {
+        state.count = data.count ?? (state.count + 1);
+        if (data.item) state.items = [data.item, ...state.items].slice(0, LIST_LIMIT);
+        render();
+        $('#status').textContent = 'Thank you for signing!';
+        localStorage.setItem('lastSignatureTime', String(Date.now()));
+        $('#name').value = '';
+        $('#email').value = '';
+        $('#location').value = '';
+        $('#consent').checked = false;
+      } else {
+        const err = (data && data.error) || 'unknown_error';
+        const messages = {
+        duplicate_recent: 'Looks like you recently signed. Thank you! (Duplicates are blocked briefly.)',
+        duplicate_name: 'That name has already signed this petition.',
+        invalid_name: 'Please enter a valid name.',
+        spam_detected: 'Submission blocked (spam detected).',
+        unknown_error: 'Something went wrong.'
+        };
+        $('#status').textContent = messages[err] || 'Could not submit right now.';
+      }
+    } catch (e) {
+      console.error(e);
+      $('#status').textContent = 'Network error. Please try again.';
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  // Share helpers
+  function initShare(){
+    const url = window.location.href;
+    const text = 'Build Homes Dont Demolish them — add your name to support the Murray family in Bohermeen.';
+    const tweet = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    $('#tweetBtn').href = tweet;
+
+    $('#copyBtn').addEventListener('click', async () => {
+      try{ await navigator.clipboard.writeText(url); $('#copyBtn').textContent='Link copied!'; setTimeout(()=>$('#copyBtn').textContent='Copy link',1600);}catch(e){alert(url);} 
+    });
+
+    $('#shareBtn').addEventListener('click', async () => {
+      if (navigator.share){ try{ await navigator.share({title:document.title,text, url}); }catch(_){} }
+      else { window.open(tweet,'_blank','noopener'); }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchSigners();
+    $('#signForm').addEventListener('submit', submitForm);
+    initShare();
+  });
+  </script>
+</body>
+</html>
