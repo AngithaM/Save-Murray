@@ -17,7 +17,7 @@
     body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);}
 
     /* --- Layout --- */
-    .wrap{max-width:1200px;margin:0 auto;padding:20px;}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px; padding-left:max(20px, env(safe-area-inset-left)); padding-right:max(20px, env(safe-area-inset-right));}
     header{position:relative;border-radius:22px;overflow:hidden;margin:8px 0 22px;background:radial-gradient(1000px 400px at 10% -20%,#1a2440,transparent),radial-gradient(900px 400px at 110% -30%,#0b5e33,transparent),linear-gradient(180deg,#0e162b,#0e1426);border:1px solid var(--outline);box-shadow:var(--shadow)}
     .hdr-inner{display:flex;gap:20px;align-items:center;justify-content:space-between;padding:18px 20px}
     .brand{display:flex;gap:12px;align-items:center}
@@ -30,7 +30,7 @@
     .counter{display:flex;align-items:center;gap:8px;background:rgba(17,24,39,.65);border:1px solid var(--outline);border-radius:14px;padding:8px 12px}
 
     .grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:22px}
-    @media (max-width: 980px){.grid{grid-template-columns:1fr}}
+    @media (max-width: 980px){.grid{grid-template-columns:1fr; gap:18px} aside.card{position:static;}}
 
     .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--outline);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
     .muted{color:var(--muted)}
@@ -46,12 +46,12 @@
     .progress{margin:10px 0 16px}
     .bar{height:12px;background:#0b1020;border:1px solid #22304a;border-radius:999px;overflow:hidden}
     .bar > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--ring));transition:width .6s ease}
-    .bar-label{display:flex;justify-content:space-between;font-size:.9rem;margin-top:6px;color:var(--muted)}
+    .bar-label{display:flex;justify-content:space-between;font-size:.9rem;margin-top:6px;color:var(--muted); gap:8px; flex-wrap:wrap;}
 
     /* Form */
     form{display:grid;gap:12px;margin-top:6px}
     label{display:block;font-weight:700;margin-bottom:6px}
-    input[type=text],input[type=email]{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #263244;background:#0b1020;color:var(--text);outline:2px solid transparent;outline-offset:2px}
+    input[type=text],input[type=email]{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #263244;background:#0b1020;color:var(--text);outline:2px solid transparent;outline-offset:2px; font-size:16px;} /* ≥16px avoids iOS zoom */
     input[type=text]:focus,input[type=email]:focus{outline-color:var(--ring)}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     @media (max-width:640px){.row{grid-template-columns:1fr}}
@@ -61,6 +61,15 @@
     button:active{transform:translateY(0)}
     button[disabled]{opacity:.65;cursor:not-allowed}
     .status{min-height:20px}
+    .hidden { display: none; }
+    .privacy {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #8b93a7; /* lighter + lower contrast */
+    opacity: 0.85;  /* makes it a bit more subdued */
+    }
+
 
     /* Sidebar */
     aside.card{position:sticky;top:16px;align-self:start}
@@ -79,6 +88,14 @@
     /* Share row */
     .share{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
     .share button,.share a{background:#0b1020;border:1px solid #22304a;color:var(--text);padding:10px 12px;border-radius:999px;text-decoration:none}
+    @media (max-width: 640px){
+      body { line-height: 1.7; }
+      .lead, .section p { font-size: 1rem; }
+      button { padding: 15px 20px; }
+      .share { gap: 8px; }
+      .share button, .share a { padding: 12px 14px; flex:1 1 48%; text-align:center; }
+      .progress { margin-top: 14px; }
+    }
 
     /* Motion respect */
     @media (prefers-reduced-motion:reduce){button{transition:none} .bar>span{transition:none}}
@@ -92,7 +109,7 @@
           <div class="logo" aria-hidden="true">
             <svg viewBox="0 0 24 24" role="img" aria-label="Home"><path d="M12 3l9 7-1.5 1.5L18 9.7V20a1 1 0 0 1-1 1h-4v-6H11v6H7a1 1 0 0 1-1-1V9.7L4.5 11.5 3 10l9-7z"/></svg>
           </div>
-          <h1>Save the Murray Family Home in Bohermeen</h1>
+          <h1>Save the Murray Family Home</h1>
         </div>
         <div class="hdr-cta">
           <div class="pill">Together for Bohermeen</div>
@@ -103,9 +120,16 @@
 
     <div class="grid">
       <section class="card" aria-labelledby="petition-title">
-        <!-- POSTER: replace poster.png with your PNG filename -->
+        <!-- POSTER -->
         <div class="hero">
-          <img src="4.png" alt="Build Homes, Dont Demolish them — community poster. Replace with your PNG filename." loading="lazy" />
+          <img
+            src="4.png"
+            alt="Build Homes, Dont Demolish them — community poster."
+            loading="lazy"
+            decoding="async"
+            width="1200" height="675"
+            sizes="(max-width: 980px) 100vw, 55vw"
+          />
         </div>
 
         <!-- Goal / progress bar -->
@@ -113,8 +137,7 @@
           <div class="bar" aria-hidden="true"><span id="progressFill" style="width:0%"></span></div>
           <div class="bar-label"><div>Goal: <strong id="goalLabel">5,000</strong></div><div><strong id="progressPct">0%</strong></div></div>
         </div>
-
-        <h2 id="petition-title" class="mission">Build Homes, Don’t Demolish Them</h2>
+                <h2 id="petition-title" class="mission">Build Homes, Don’t Demolish Them</h2>
         <p class="lead">The people of Bohermeen call on Meath County Council to listen to our community, explore all alternatives, and work towards a resolution that preserves the Murray family home.</p>
 
         <div class="section">
@@ -154,16 +177,17 @@
         <form id="signForm" novalidate>
           <div>
             <label for="name">Full name <span class="muted">(required)</span></label>
-            <input id="name" name="name" type="text" required maxlength="80" autocomplete="name" />
+            <input id="name" name="name" type="text" required maxlength="80" autocomplete="name" inputmode="text" />
           </div>
           <div>
             <label for="email">Email <span class="muted">(optional)</span></label>
-            <input id="email" name="email" type="email" maxlength="120" autocomplete="email" />
+            <input id="email" name="email" type="email" maxlength="120" autocomplete="email" inputmode="email" />
           </div>
           <div class="row">
             <div>
               <label for="location">City / Country <span class="muted">(required)</span></label>
-              <input id="location" name="location" type="text" maxlength="80" autocomplete="address-level2" required />
+              <input id="location" name="location" type="text" maxlength="80"
+                     autocomplete="address-level2 country-name" inputmode="text" required />
             </div>
             <div style="display:none">
               <!-- Honeypot for bots -->
@@ -175,11 +199,37 @@
             <input id="consent" type="checkbox" required />
             <label for="consent">I consent to my name being displayed publicly.</label>
           </div>
+
           <div class="actions">
             <button id="submitBtn" type="submit">Sign Petition</button>
             <div class="status" id="status" aria-live="polite"></div>
           </div>
-          <p class="muted" style="margin:8px 0 0">By signing, you agree to the processing of your data for the purpose of this petition. <a href="#" class="muted">Privacy policy</a>.</p>
+
+          <!-- Privacy toggle (accessible) -->
+        <p class="muted" style="margin:8px 0 0">
+        <button type="button"
+            class="muted"
+            aria-controls="privacy"
+            aria-expanded="false"
+            style="background:none;border:0;padding:0;color:inherit;cursor:pointer;text-decoration:underline"
+            onclick="
+            const p=document.getElementById('privacy');
+            const nowHidden = !p.classList.toggle('hidden');
+            this.setAttribute('aria-expanded', String(!nowHidden));
+            ">
+            Privacy Policy
+        </button>
+        </p>
+
+        <div id="privacy" class="privacy hidden">
+        <p><strong>What we collect:</strong> Your name, location, and (if you choose) your email address.</p>
+        <p><strong>Why we collect it:</strong> Your name and location are needed to show public support for the petition. If you provide your email, it may be used to keep you updated about this petition or related community efforts.</p>
+        <p><strong>Who can see your data:</strong> Your name (and location, if chosen) may be displayed publicly as part of the petition. Your email address will never be shared or displayed.</p>
+        <p><strong>How we store your data:</strong> We keep your information secure and use it only for the purposes stated above.</p>
+        <p><strong>Your rights:</strong> You can ask us to remove your details from the petition at any time by contacting [petition organizer’s email/contact].</p>
+        <p>We will never use your data for unrelated purposes.</p>
+        </div>
+
         </form>
       </section>
 
@@ -190,7 +240,7 @@
     </div>
   </div>
 
-  <script>
+  <script defer>
   const API_BASE = 'https://script.google.com/macros/s/AKfycbwgAMx-iaj6dahPnCFwov9QmDaMIk42ejoQv5RI2_sbqBrSSOaO0SdNWha5uuil_l0Q/exec';
   const LIST_LIMIT = 200; // how many to show in the sidebar
   const GOAL = 5000;
@@ -313,11 +363,11 @@
       } else {
         const err = (data && data.error) || 'unknown_error';
         const messages = {
-        duplicate_recent: 'Looks like you recently signed. Thank you!',
-        duplicate_name: 'Looks like you already signed the petition. Thank you! (Please note: we migrated data from our previous site.)',
-        invalid_name: 'Please enter a valid name.',
-        spam_detected: 'Submission blocked (spam detected).',
-        unknown_error: 'Something went wrong.'
+          duplicate_recent: 'Looks like you recently signed. Thank you! (Duplicates are blocked briefly.)',
+          duplicate_name: 'That name has already signed this petition.',
+          invalid_name: 'Please enter a valid name.',
+          spam_detected: 'Submission blocked (spam detected).',
+          unknown_error: 'Something went wrong.'
         };
         $('#status').textContent = messages[err] || 'Could not submit right now.';
       }
@@ -337,11 +387,17 @@
     $('#tweetBtn').href = tweet;
 
     $('#copyBtn').addEventListener('click', async () => {
-      try{ await navigator.clipboard.writeText(url); $('#copyBtn').textContent='Link copied!'; setTimeout(()=>$('#copyBtn').textContent='Copy link',1600);}catch(e){alert(url);} 
+      try{
+        await navigator.clipboard.writeText(url);
+        $('#copyBtn').textContent='Link copied!';
+        setTimeout(()=>$('#copyBtn').textContent='Copy link',1600);
+      }catch(e){alert(url);}
     });
 
     $('#shareBtn').addEventListener('click', async () => {
-      if (navigator.share){ try{ await navigator.share({title:document.title,text, url}); }catch(_){} }
+      if (navigator.share){
+        try{ await navigator.share({title:document.title,text, url}); }catch(_){}
+      }
       else { window.open(tweet,'_blank','noopener'); }
     });
   }
